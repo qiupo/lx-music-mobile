@@ -71,7 +71,6 @@ export const play = time => {
   lrcTools.lrc.play(time)
 }
 export const pause = () => {
-  // console.log('pause')
   lrcTools.isPlay = false
   lrcTools.lrc.pause()
 }

@@ -22,6 +22,10 @@ const api_test = {
       family: 4,
     })
     requestObj.promise = requestObj.promise.then(({ body }) => {
+      console.log('body-start')
+      console.log(headers)
+      console.log(body)
+      console.log('body-end')
       return body.code === 0 ? Promise.resolve({ type, url: body.data }) : Promise.reject(new Error(requestMsg.fail))
     })
     return requestObj

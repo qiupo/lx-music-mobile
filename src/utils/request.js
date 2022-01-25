@@ -169,7 +169,9 @@ const fetchData = (url, { timeout = 15000, ...options }) => {
         BackgroundTimer.clearTimeout(id)
         return response
       }).then(resp => resp.text().then(text => {
-        // console.log(options, headers, text)
+        // console.log('--------------')
+        // console.log(text)
+        // console.log('--------------')
         return {
           headers: resp.headers.map,
           body: text,
@@ -184,7 +186,7 @@ const fetchData = (url, { timeout = 15000, ...options }) => {
         }
         return resp
       }).catch(err => {
-        // console.log(err, err.code, err.message)
+        console.log(err, err.code, err.message)
         return Promise.reject(err)
       })
     }),

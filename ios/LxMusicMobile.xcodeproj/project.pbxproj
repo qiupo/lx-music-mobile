@@ -11,6 +11,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		15B59496279E882500674BF6 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15B59495279E882500674BF6 /* icomoon.ttf */; };
+		15B5949E279E93FF00674BF6 /* CacheModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B5949D279E93FF00674BF6 /* CacheModule.m */; };
+		15B594A2279E964F00674BF6 /* GzipModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B594A1279E964F00674BF6 /* GzipModule.m */; };
+		15B594A6279E97A800674BF6 /* UtilsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B594A5279E97A800674BF6 /* UtilsModule.m */; };
+		15E003C0279F107F00BCECDD /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15E003BF279F107F00BCECDD /* bundle */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9C141382382E3C900FF41CFE /* libPods-LxMusicMobile-LxMusicMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1743840A4091A253DF94ADF3 /* libPods-LxMusicMobile-LxMusicMobileTests.a */; };
 		CB28F6E71BFFBBFFE4D6CA71 /* libPods-LxMusicMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E4FAB80E3D35EA640E54A7 /* libPods-LxMusicMobile.a */; };
@@ -37,6 +42,13 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LxMusicMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = LxMusicMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LxMusicMobile/main.m; sourceTree = "<group>"; };
+		15B59495279E882500674BF6 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = icomoon.ttf; path = LxMusicMobile/assets/fonts/icomoon.ttf; sourceTree = "<group>"; };
+		15B5949C279E937A00674BF6 /* CacheModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheModule.h; sourceTree = "<group>"; };
+		15B5949D279E93FF00674BF6 /* CacheModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheModule.m; sourceTree = "<group>"; };
+		15B594A0279E964F00674BF6 /* GzipModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GzipModule.h; sourceTree = "<group>"; };
+		15B594A1279E964F00674BF6 /* GzipModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GzipModule.m; sourceTree = "<group>"; };
+		15B594A5279E97A800674BF6 /* UtilsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsModule.m; sourceTree = "<group>"; };
+		15E003BF279F107F00BCECDD /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundle; sourceTree = "<group>"; };
 		1743840A4091A253DF94ADF3 /* libPods-LxMusicMobile-LxMusicMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LxMusicMobile-LxMusicMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DF1300CF795902963DA15C /* Pods-LxMusicMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LxMusicMobile.release.xcconfig"; path = "Target Support Files/Pods-LxMusicMobile/Pods-LxMusicMobile.release.xcconfig"; sourceTree = "<group>"; };
 		65E4FAB80E3D35EA640E54A7 /* libPods-LxMusicMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LxMusicMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +98,11 @@
 		13B07FAE1A68108700A75B9A /* LxMusicMobile */ = {
 			isa = PBXGroup;
 			children = (
+				15E003BF279F107F00BCECDD /* bundle */,
+				15B594A3279E977400674BF6 /* utils */,
+				15B5949F279E963900674BF6 /* gzip */,
+				15B5949B279E934A00674BF6 /* cache */,
+				15B59494279E87AD00674BF6 /* fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -94,6 +111,40 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = LxMusicMobile;
+			sourceTree = "<group>";
+		};
+		15B59494279E87AD00674BF6 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				15B59495279E882500674BF6 /* icomoon.ttf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		15B5949B279E934A00674BF6 /* cache */ = {
+			isa = PBXGroup;
+			children = (
+				15B5949C279E937A00674BF6 /* CacheModule.h */,
+				15B5949D279E93FF00674BF6 /* CacheModule.m */,
+			);
+			name = cache;
+			sourceTree = "<group>";
+		};
+		15B5949F279E963900674BF6 /* gzip */ = {
+			isa = PBXGroup;
+			children = (
+				15B594A0279E964F00674BF6 /* GzipModule.h */,
+				15B594A1279E964F00674BF6 /* GzipModule.m */,
+			);
+			name = gzip;
+			sourceTree = "<group>";
+		};
+		15B594A3279E977400674BF6 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				15B594A5279E97A800674BF6 /* UtilsModule.m */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -145,7 +196,6 @@
 				D06A0E532F2D8A3241E1AE67 /* Pods-LxMusicMobile-LxMusicMobileTests.debug.xcconfig */,
 				0C786195C093D6A4264F7658 /* Pods-LxMusicMobile-LxMusicMobileTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -243,6 +293,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E003C0279F107F00BCECDD /* bundle in Resources */,
+				15B59496279E882500674BF6 /* icomoon.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -412,7 +464,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				15B5949E279E93FF00674BF6 /* CacheModule.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				15B594A2279E964F00674BF6 /* GzipModule.m in Sources */,
+				15B594A6279E97A800674BF6 /* UtilsModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,9 +539,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49BYF55JVA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LxMusicMobile/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -494,10 +552,11 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-lc++",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LxMusicMobile;
+				PROVISIONING_PROFILE_SPECIFIER = zhenjitiaoshiPP;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -510,8 +569,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49BYF55JVA;
 				INFOPLIST_FILE = LxMusicMobile/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,10 +581,11 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-lc++",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LxMusicMobile;
+				PROVISIONING_PROFILE_SPECIFIER = zhenjitiaoshiPP;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -585,7 +648,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/lib/swift\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -644,7 +706,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/lib/swift\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;

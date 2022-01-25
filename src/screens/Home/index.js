@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { View } from 'react-native'
+import {SafeAreaView, View} from 'react-native'
 import Header from './components/Header'
 // import Aside from './components/Aside'
 import Main from './components/Main'
@@ -18,7 +18,9 @@ export default (props) => {
 
   return (
     <>
+      <SafeAreaView>
       <Header componentId={props.componentId} />
+      </SafeAreaView>
       <View style={{ flex: 1, flexDirection: 'column', height: '100%', backgroundColor: theme.primary }}>
         {/* <Aside /> */}
         <Main />

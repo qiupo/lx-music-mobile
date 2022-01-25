@@ -75,7 +75,9 @@ export const getCurrentTrackId = async() => {
   return list[currentTrackIndex]?.id
 }
 export const getCurrentTrack = async() => {
+  console.log('getCurrentTrack')
   const currentTrackIndex = await TrackPlayer.getCurrentTrack()
+  console.log(currentTrackIndex)
   return list[currentTrackIndex]
 }
 

@@ -15,7 +15,8 @@
     "clear": "react-native clean-project",
     "publish": "node publish",
     "nodeify": "rn-nodeify --hack --install process,crypto,events,constant,console,stream,url,util",
-    "postinstall": "npm run nodeify"
+    "postinstall": "npm run nodeify",
+    "bundle-ios":"node node_modules/react-native/local-cli/cli.js bundle --entry-file index.js  --platform ios --dev false --bundle-output ./ios/bundle/index.ios.jsbundle --assets-dest ./ios/bundle"
   },
   "engines": {
     "node": ">= 12"

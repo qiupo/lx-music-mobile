@@ -1,30 +1,30 @@
-import { NativeModules, NativeEventEmitter } from 'react-native'
+import {NativeModules, NativeEventEmitter} from 'react-native'
 
-const { LyricModule } = NativeModules
+const {LyricModule} = NativeModules
 
 let isShowLyric = false
 
 
 export const themes = [
-  { id: 'green', value: '#07c556' },
-  { id: 'yellow', value: '#fffa12' },
-  { id: 'blue', value: '#19b5fe' },
-  { id: 'red', value: '#ff1222' },
-  { id: 'pink', value: '#f1828d' },
-  { id: 'purple', value: '#c851d4' },
-  { id: 'orange', value: '#ffad12' },
-  { id: 'grey', value: '#bdc3c7' },
+  {id: 'green', value: '#07c556'},
+  {id: 'yellow', value: '#fffa12'},
+  {id: 'blue', value: '#19b5fe'},
+  {id: 'red', value: '#ff1222'},
+  {id: 'pink', value: '#f1828d'},
+  {id: 'purple', value: '#c851d4'},
+  {id: 'orange', value: '#ffad12'},
+  {id: 'grey', value: '#bdc3c7'},
 ]
 
 export const textPositionX = [
-  { id: 'left', value: 'LEFT' },
-  { id: 'center', value: 'CENTER' },
-  { id: 'right', value: 'RIGHT' },
+  {id: 'left', value: 'LEFT'},
+  {id: 'center', value: 'CENTER'},
+  {id: 'right', value: 'RIGHT'},
 ]
 export const textPositionY = [
-  { id: 'top', value: 'TOP' },
-  { id: 'center', value: 'CENTER' },
-  { id: 'bottom', value: 'BOTTOM' },
+  {id: 'top', value: 'TOP'},
+  {id: 'center', value: 'CENTER'},
+  {id: 'bottom', value: 'BOTTOM'},
 ]
 
 const getThemeColor = themeId => (themes.find(t => t.id == themeId) || themes[0]).value
@@ -39,7 +39,7 @@ const getTextSize = num => parseInt(num) / 10
  * @param {Number} isLock is lock lyric window
  * @returns {Promise} Promise
  */
-export const showLyric = ({ isLock, themeId, opacity, textSize, positionX, positionY, textPositionX, textPositionY }) => {
+export const showLyric = ({isLock, themeId, opacity, textSize, positionX, positionY, textPositionX, textPositionY}) => {
   if (isShowLyric) return Promise.resolve()
   return LyricModule.showLyric({
     isLock,
@@ -103,7 +103,7 @@ export const setLyric = (lyric, translation) => {
  * @returns {Promise} Promise
  */
 export const toggleTranslation = isShowTranslation => {
-  // if (!isShowLyric) return Promise.resolve()
+  if (!isShowLyric) return Promise.resolve()
   return LyricModule.toggleTranslation(isShowTranslation)
 }
 
@@ -161,13 +161,18 @@ export const openOverlayPermissionActivity = () => {
 }
 
 export const onPositionChange = callback => {
-  const eventEmitter = new NativeEventEmitter(LyricModule)
-  const eventListener = eventEmitter.addListener('set-position', event => {
-    callback(event)
-  })
+  try {
+    const eventEmitter = new NativeEventEmitter(LyricModule)
 
-  return () => {
-    eventListener.remove()
+    const eventListener = eventEmitter.addListener('set-position', event => {
+      callback(event)
+    })
+
+    return () => {
+      eventListener.remove()
+    }
+  } catch (e) {
+    console.log(e)
   }
 }
 
