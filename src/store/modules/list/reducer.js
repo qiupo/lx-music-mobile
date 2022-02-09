@@ -24,19 +24,16 @@ const initialState = {
     id: 'default',
     name: '试听列表',
     list: [],
-    location: 0,
   },
   loveList: {
     id: 'love',
     name: '我的收藏',
     list: [],
-    location: 0,
   },
   tempList: {
     id: 'temp',
     name: '临时列表',
     list: [],
-    location: 0,
   },
   userList: [],
   listPosition: {},
@@ -73,11 +70,11 @@ const mutations = {
     const newState = { ...state }
     const ids = []
     if (defaultList != null) {
-      newState.defaultList = { ...state.defaultList, list: defaultList.list, location: defaultList.location }
+      newState.defaultList = { ...state.defaultList, list: defaultList.list }
       ids.push(defaultList.id)
     }
     if (loveList != null) {
-      newState.loveList = { ...state.loveList, list: loveList.list, location: loveList.location }
+      newState.loveList = { ...state.loveList, list: loveList.list }
       ids.push(loveList.id)
     }
     if (userList != null) {
@@ -102,8 +99,8 @@ const mutations = {
   },
   /* [TYPES.initList](state, { defaultList, loveList, userList }) {
     const newState = { ...state }
-    if (defaultList != null) newState.defaultList = { ...state.defaultList, list: defaultList.list, location: defaultList.location }
-    if (loveList != null) newState.loveList = { ...state.loveList, list: loveList.list, location: loveList.location }
+    if (defaultList != null) newState.defaultList = { ...state.defaultList, list: defaultList.list }
+    if (loveList != null) newState.loveList = { ...state.loveList, list: loveList.list }
     if (userList != null) newState.userList = userList
     allListInit(state.defaultList, state.loveList, state.userList)
     state.isInitedList = true
@@ -256,6 +253,7 @@ const mutations = {
     if (position == null) {
       userList.push(newList)
     } else {
+      newList.locationUpdateTime = Date.now()
       userList.splice(position + 1, 0, newList)
     }
     newState.userList = userList
@@ -279,11 +277,12 @@ const mutations = {
   [TYPES.setUserListPosition](state, { id, position }) {
     const targetList = allList[id]
     if (!targetList) return state
-    const index = state.userList.findIndex(targetList)
+    const index = state.userList.findIndex(l => l.id == targetList.id)
     if (index < 0) return state
-    state.userList.splice(index, 1)
-    state.userList.splice(index, position, targetList)
-    return updateStateList({ ...state }, [id])
+    const newState = { ...state, userList: [...state.userList] }
+    newState.userList.splice(index, 1)
+    newState.userList.splice(Math.max(Math.min(position, newState.userList.length), 0), 0, targetList)
+    return newState
   },
   [TYPES.setMusicPosition](state, { id, position, list }) {
     const targetList = allList[id]

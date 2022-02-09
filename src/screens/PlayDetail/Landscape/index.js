@@ -1,14 +1,14 @@
 import React, { memo, useEffect, useCallback, useMemo } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, StatusBar } from 'react-native'
 import { useGetter, useDispatch } from '@/store'
 import { screenkeepAwake, screenUnkeepAwake } from '@/utils/utils'
 import { onNavigationComponentDidDisappearEvent } from '@/navigation'
 
 import Header from './components/Header'
 import Pic from './Pic'
-import Title from './Title'
+import ControlBtn from './ControlBtn'
 import Lyric from './Lyric'
-import Player from './Player'
+import PlayBar from './PlayBar'
 import MoreBtn from './MoreBtn'
 
 export default memo(({ componentId, animated }) => {
@@ -37,23 +37,20 @@ export default memo(({ componentId, animated }) => {
   const component = useMemo(() => {
     return (
       <>
-        <Header />
-        <View style={{ flex: 1, backgroundColor: theme.primary }}>
-          <View style={styles.container}>
-            <View style={styles.left}>
-              <Pic componentId={componentId} animated={animated} />
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }} nativeID="pageIndicator">
-                <Title />
-                <View>
-                  <MoreBtn />
-                </View>
-              </View>
+        <StatusBar backgroundColor="rgba(0,0,0,0)" barStyle="dark-content" translucent={true} />
+        <View style={{ ...styles.container, backgroundColor: theme.primary }}>
+          <View style={styles.left}>
+            <Header />
+            <Pic componentId={componentId} animated={animated} />
+            <View style={styles.controlBtn} nativeID="pageIndicator">
+              <MoreBtn />
+              <ControlBtn />
             </View>
-            <View style={styles.right}>
-              <Lyric />
-            </View>
+            <PlayBar />
           </View>
-          <Player />
+          <View style={styles.right}>
+            <Lyric />
+          </View>
         </View>
       </>
     )
@@ -63,18 +60,27 @@ export default memo(({ componentId, animated }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: StatusBar.currentHeight,
     flex: 1,
     flexDirection: 'row',
   },
   left: {
     flex: 1,
     width: '45%',
-    paddingLeft: 20,
+    // paddingLeft: 15,
+    paddingBottom: 10,
     // backgroundColor: '#eee',
   },
   right: {
     width: '55%',
     flexGrow: 0,
     flexShrink: 0,
+  },
+  controlBtn: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // backgroundColor: '#eee',
   },
 })

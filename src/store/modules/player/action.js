@@ -66,8 +66,8 @@ let playMusicId = null
 
 const getPlayType = (state, songInfo) => {
   let type = '128k'
-  const list = state.common.qualityList[songInfo.source]
-  if (state.common.setting.player.isHighQuality && songInfo._types['320k'] && list && list.includes('320k')) type = '320k'
+  const list = global.globalObj.qualityList[songInfo.source]
+  if (state.common.setting.player.highQuality && songInfo._types['320k'] && list && list.includes('320k')) type = '320k'
   return type
 }
 
@@ -388,10 +388,8 @@ const handleGetLyric = function(dispatch, listId, musicInfo, retryedSource = [],
 
 export const getUrl = ({ musicInfo, type, isRefresh }) => async(dispatch, getState) => {
   const cachedUrl = await getMusicUrl(musicInfo, type)
-  if (cachedUrl && !isRefresh) {
-    if (getState().player.isGettingUrl) dispatch(setGetingUrlState(false))
-    return cachedUrl
-  }
+  if (cachedUrl && !isRefresh) return cachedUrl
+
   dispatch(setStatus({
     status: STATUS.gettingUrl,
     text: isRefresh ? 'URL刷新中...' : 'URL获取中...',

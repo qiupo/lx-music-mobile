@@ -87,7 +87,8 @@ export const playMusic = async(tracks, time) => {
   // await updateMusicInfo(track)
   const currentTrackIndex = await TrackPlayer.getCurrentTrack()
   await TrackPlayer.add(tracks).then(() => list.push(...tracks))
-  await TrackPlayer.skip(list.indexOf(track))
+  const queue = await TrackPlayer.getQueue()
+  await TrackPlayer.skip(queue.findIndex(t => t.id == track.id))
 
   if (currentTrackIndex == null) {
     if (!isTempTrack(track.id)) {
@@ -107,8 +108,8 @@ export const playMusic = async(tracks, time) => {
     }
   }
 
-  if (list.length > 2) {
-    TrackPlayer.remove(Array(list.length - 2).fill(null).map((_, i) => i)).then(() => list.splice(0, list.length - 2))
+  if (queue.length > 2) {
+    TrackPlayer.remove(Array(queue.length - 2).fill(null).map((_, i) => i)).then(() => list.splice(0, list.length - 2))
   }
 }
 
@@ -132,7 +133,7 @@ export const updateMetaInfo = async track => {
     title: track.title || 'Unknow',
     artist: track.artist || 'Unknow',
     album: track.album || null,
-    artwork: global.playInfo?.currentPlayMusicInfo?.img || null,
+    artwork: global.playInfo?.currentPlayMusicInfo?.img ?? null,
     duration: global.playInfo?.duration || 0,
   }, global.playInfo.isPlaying)
 }
@@ -165,14 +166,14 @@ const debounceUpdateMetaInfoTools = {
           _track = null
           // isDelayRun = false
           fn(track)
-        }, 1000)
+        }, 1200)
       } else {
         isDelayRun = true
         fn(track)
         BackgroundTimer.setTimeout(() => {
           // delayTimer = null
           isDelayRun = false
-        }, 1000)
+        }, 1200)
       }
     }
   },

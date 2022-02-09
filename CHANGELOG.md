@@ -6,6 +6,85 @@ Project versioning adheres to [Semantic Versioning](http://semver.org/).
 Commit convention is based on [Conventional Commits](http://conventionalcommits.org).
 Change log format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.10.3](https://github.com/lyswhut/lx-music-mobile/compare/v0.10.2...v0.10.3) - 2022-01-28
+
+### 优化
+
+- 优化kw源英文与翻译歌词的匹配
+
+### 修复
+
+- 修复桌面歌词播放器会导致应用崩溃的问题
+
+## [0.10.2](https://github.com/lyswhut/lx-music-mobile/compare/v0.10.1...v0.10.2) - 2022-01-22
+
+### 修复
+
+- 修复某些系统下的虚拟导航栏会导致播放栏隐藏的问题（react-native v0.67.x导致的）
+
+### 其他
+
+- 降级react-native到 v0.66.4
+
+## [0.10.1](https://github.com/lyswhut/lx-music-mobile/compare/v0.10.0...v0.10.1) - 2022-01-22
+
+### 优化
+
+- 优化通知栏的更新机制，尝试修复魅族的通知栏图片不显示的问题
+- 我的列表-列表名的右击菜单更新已收藏的在线列表时，将始终重新加载，不再使用缓存，解决在原平台更新歌单后，在LX点击更新可能看到的还是在原平台更新前的歌单的问题
+
+### 修复
+
+- 修复tx源无搜索结果的问题
+- 修复小米等设备下面的手势提示线背景颜色为黑色的问题
+
+### 其他
+
+- 升级React native到v0.67.1
+
+## [0.10.0](https://github.com/lyswhut/lx-music-mobile/compare/v0.9.2...v0.10.0) - 2021-12-30
+
+### 新增
+
+- 同步功能新增对列表位置调整的支持（需v1.15.3以上的PC端版本才支持）
+- 新增播放详情页歌词字体大小调整设置，可在详情页右上角的按钮进行调整
+- 新增同步服务地址历史列表功能
+- 横屏播放详情页新增评论入口
+- 我的列表歌曲三个点的菜单新增复制歌曲名
+
+### 优化
+
+- 修改对播放模块的调用，杜绝应用显示正在播放的歌曲与实际播放歌曲不一致的问题（这是播放模块歌曲队列与应用内歌曲队列在某些情况下出现不一致时导致的）
+- 支持PC端同步功能添加对列表顺序调整的控制，确保手动调整位置后的列表与不同的电脑同步时，列表位置不会被还原
+- 调整横屏下的导航栏、播放详情页布局，提高屏幕空间利用率并使其更易操作
+- 调整歌单类别、我的列表弹出层界面
+- 播放栏移除上一曲按钮，将多出来的空间加给播放、下一曲按钮
+- 现在点击、长按播放栏歌曲标题也可以进入详情页、定位当前播放歌曲了
+
+### 修复
+
+- 修复kw源某些歌曲的歌词提取异常的问题
+
+### 其他
+
+- 升级react-native到v0.66.4
+
+## [0.9.2](https://github.com/lyswhut/lx-music-mobile/compare/v0.9.1...v0.9.2) - 2021-11-28
+
+### 优化
+
+- 添加应用初始化出错时的错误捕获输出
+- 优化歌词自动换源机制
+
+### 修复
+
+- 修复因kw源歌词接口停用导致该源歌词获取失败的问题
+
+### 其他
+
+- 更新react-native到v0.66.3
+- 更新Exoplayer到v2.16.0
+
 ## [0.9.1](https://github.com/lyswhut/lx-music-mobile/compare/v0.9.0...v0.9.1) - 2021-10-23
 
 ### 修复

@@ -200,10 +200,11 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     flexShrink: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   pagerView: {
     flex: 1,
+    overflow: 'hidden',
   },
   pageStyle: {
     // alignItems: 'center',

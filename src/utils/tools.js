@@ -1,5 +1,6 @@
 import { Platform, NativeModules, ToastAndroid, BackHandler, Linking, Dimensions, Alert } from 'react-native'
 import ExtraDimensions from 'react-native-extra-dimensions-android'
+import Clipboard from '@react-native-clipboard/clipboard'
 import { getData, setData, getAllKeys, removeData, removeDataMultiple, setDataMultiple, getDataMultiple } from '@/plugins/storage'
 import { storageDataPrefix } from '@/config'
 import { throttle } from './index'
@@ -10,6 +11,7 @@ const playInfoStorageKey = storageDataPrefix.playInfo
 const listPositionPrefix = storageDataPrefix.listPosition
 const syncAuthKeyPrefix = storageDataPrefix.syncAuthKey
 const syncHostPrefix = storageDataPrefix.syncHost
+const syncHostHistoryPrefix = storageDataPrefix.syncHostHistory
 const listPrefix = storageDataPrefix.list
 const listSortPrefix = storageDataPrefix.listSort
 const defaultListKey = listPrefix + 'default'
@@ -232,7 +234,6 @@ export const getSyncHost = async() => {
   }
   return { ...syncHostInfo }
 }
-
 export const setSyncHost = async({ host, port }) => {
   // let hostInfo = await getData(syncHostPrefix) || {}
   // hostInfo.host = host
@@ -240,6 +241,24 @@ export const setSyncHost = async({ host, port }) => {
   syncHostInfo.host = host
   syncHostInfo.port = port
   await setData(syncHostPrefix, syncHostInfo)
+}
+let syncHostHistory
+export const getSyncHostHistory = async() => {
+  if (syncHostHistory === undefined) {
+    syncHostHistory = await getData(syncHostHistoryPrefix) || []
+  }
+  return syncHostHistory
+}
+export const addSyncHostHistory = async(host, port) => {
+  let syncHostHistory = await getSyncHostHistory()
+  if (syncHostHistory.some(h => h.host == host && h.port == port)) return
+  syncHostHistory.unshift({ host, port })
+  if (syncHostHistory.length > 20) syncHostHistory = syncHostHistory.slice(0, 20) // 最多存储20个
+  await setData(syncHostHistoryPrefix, syncHostHistory)
+}
+export const removeSyncHostHistory = async index => {
+  syncHostHistory.splice(index, 1)
+  await setData(syncHostHistoryPrefix, syncHostHistory)
 }
 
 export const exitApp = BackHandler.exitApp
@@ -293,6 +312,10 @@ export const confirmDialog = ({
       },
     })
   })
+}
+
+export const clipboardWriteText = str => {
+  Clipboard.setString(str)
 }
 
 export {

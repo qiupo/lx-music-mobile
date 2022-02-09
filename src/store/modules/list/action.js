@@ -96,6 +96,16 @@ export const initList = listData => async(dispatch, getState) => {
   // }
 }
 
+const handleSaveListAllSort = async(userList) => {
+  const listPosition = {}
+  userList.forEach((list, index) => {
+    listPosition[list.id] = index
+    delete list.location
+  })
+  global.listScrollPosition = listPosition
+  await saveListAllSort(listPosition)
+}
+
 export const setSyncList = ({ defaultList, loveList, userList }) => async(dispatch, getState) => {
   const state = getState()
   const userListIds = userList.map(l => l.id)
@@ -109,23 +119,17 @@ export const setSyncList = ({ defaultList, loveList, userList }) => async(dispat
   })
   await removeList(removeUserListIds)
 
-  const listPosition = {}
-  userList.forEach((list, index) => {
-    listPosition[list.id] = index
-    delete list.location
-  })
-  global.listScrollPosition = listPosition
-  await saveListAllSort(listPosition)
+  await handleSaveListAllSort(userList)
 
   dispatch(playerAction.checkPlayList([...Object.keys(global.allList), ...removeUserListIds]))
   saveList([defaultList, loveList, ...userList])
 }
 
-export const setList = ({ id, list, name, location, source, sourceListId, isSync }) => async(dispatch, getState) => {
+export const setList = ({ id, list, name, source, sourceListId, isSync }) => async(dispatch, getState) => {
   const targetList = global.allList[id]
   if (targetList) {
     if (name && targetList.name === name) {
-      if (!isSync) listSync.sendListAction('set_list', { id, list, name, location, source, sourceListId })
+      if (!isSync) listSync.sendListAction('set_list', { id, list, name, source, sourceListId })
       dispatch({
         type: TYPES.listClear,
         payload: id,
@@ -136,9 +140,9 @@ export const setList = ({ id, list, name, location, source, sourceListId, isSync
 
     id += '_' + Math.random()
   }
-  if (!isSync) listSync.sendListAction('set_list', { id, list, name, location, source, sourceListId })
+  if (!isSync) listSync.sendListAction('set_list', { id, list, name, source, sourceListId })
 
-  await dispatch(createUserList({ id, list, name, location, source, sourceListId, isSync: true }))
+  await dispatch(createUserList({ id, list, name, source, sourceListId, isSync: true }))
 }
 
 export const listAdd = ({ musicInfo, id, addMusicLocationType, isSync }) => (dispatch, getState) => {
@@ -328,11 +332,18 @@ export const setUserListName = ({ id, name, isSync }) => async(dispatch, getStat
   const targetList = global.allList[id]
   await saveList(targetList)
 }
-export const setUserListPosition = ({ id, position }) => async(dispatch, getState) => {
+export const setUserListPosition = ({ id, position, isSync }) => async(dispatch, getState) => {
+  if (!isSync) {
+    listSync.sendListAction('set_user_list_position', { id, position })
+  }
+
   dispatch({
     type: TYPES.setUserListPosition,
     payload: { id, position },
   })
+
+  await handleSaveListAllSort(getState().list.userList)
+
   await saveList(global.allList[id])
 }
 export const setMusicPosition = ({ id, position, list, isSync }) => async(dispatch, getState) => {
