@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useMemo, useCallback, memo } from 'react'
-import { View, StyleSheet, SafeAreaView } from 'react-native'
+import {View, StyleSheet, SafeAreaView, TextInput} from 'react-native'
 import PagerView from 'react-native-pager-view'
 import Search from '../Search'
 import SongList from '../SongList'

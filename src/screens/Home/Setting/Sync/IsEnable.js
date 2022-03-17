@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState, useEffect, useRef, useMemo } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import {View, Text, StyleSheet, TextInput} from 'react-native'
 
 import { useGetter, useDispatch } from '@/store'
 

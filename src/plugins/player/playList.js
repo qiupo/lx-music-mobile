@@ -135,7 +135,7 @@ export const updateMetaInfo = async track => {
     album: track.album || null,
     artwork: global.playInfo?.currentPlayMusicInfo?.img ?? null,
     duration: global.playInfo?.duration || 0,
-  }, global.playInfo.isPlaying)
+  })
 }
 
 

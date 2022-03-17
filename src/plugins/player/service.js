@@ -26,26 +26,18 @@ const handleExitApp = async() => {
 }
 
 const updateMetaData = async isPlaying => {
-  console.log('currentIsPlaying-------------------1')
-  console.log('currentIsPlaying-------------------2')
-  console.log(isPlaying == global.playInfo.isPlaying)
   if (isPlaying == global.playInfo.isPlaying) {
-    console.log(TrackPlayer)
-    const duration = TrackPlayer.getDuration()
+    const duration = await TrackPlayer.getDuration()
     console.log('currentIsPlaying', global.playInfo.duration, duration)
-    console.log(global.playInfo.duration != duration)
     if (global.playInfo.duration != duration) {
-      console.log(' await getCurrentTrack')
       global.playInfo.duration = duration
-      console.log(' --------')
-
       const trackInfo = await getCurrentTrack()
+      console.log('trackInfo')
       console.log(trackInfo)
       if (trackInfo && global.playInfo.currentPlayMusicInfo) {
         delayUpdateMusicInfo(buildTrack({ musicInfo: global.playInfo.currentPlayMusicInfo, type: trackInfo.type, url: trackInfo.url, duration }))
       }
     }
-    console.log('end updateMetaData')
   } else {
     const [duration, trackInfo] = await Promise.all([TrackPlayer.getDuration(), getCurrentTrack()])
     global.playInfo.duration = duration
@@ -185,7 +177,6 @@ export default async() => {
     }
     if (global.isPlayedExit) return handleExitApp()
 
-    console.log('currentIsPlaying', currentIsPlaying, global.playInfo.isPlaying)
     await updateMetaData(currentIsPlaying)
   })
   console.log('--------updateMetaData later------')

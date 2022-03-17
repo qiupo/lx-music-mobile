@@ -4,14 +4,17 @@ import { headers, timeout } from '../options'
 
 const api_test = {
   getMusicUrl(songInfo, type) {
-    const requestObj = httpFetch(`http://ts.tempmusic.tk/url/kg/${songInfo._types[type].hash}/${type}`, {
+    // https://wwwapi.kugou.com/yy/index.php?r=play/getdata&hash=${songInfo._types[type].hash}&dfid=dfid&mid=mid&platid=4&album_id=${songInfo.albumId}
+    const requestObj = httpFetch(`https://wwwapi.kugou.com/yy/index.php?r=play/getdata&hash=${songInfo._types[type].hash}&dfid=dfid&mid=mid&platid=4&album_id=${songInfo.albumId}`, {
       method: 'get',
       timeout,
       headers,
       family: 4,
     })
     requestObj.promise = requestObj.promise.then(({ body }) => {
-      return body.code === 0 ? Promise.resolve({ type, url: body.data }) : Promise.reject(new Error(requestMsg.fail))
+      console.log('酷狗body-----')
+      console.log(body)
+      return body.code === 200 ? Promise.resolve({ type, play_url: body.data }) : Promise.reject(new Error(requestMsg.fail))
     })
     return requestObj
   },

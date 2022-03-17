@@ -12,7 +12,7 @@ const VersionModal = ({ componentId }) => {
   const isAgreePact = useGetter('common', 'isAgreePact')
   const setAgreePact = useDispatch('common', 'setAgreePact')
   const checkVersion = useDispatch('common', 'checkVersion')
-  const [time, setTime] = useState(20)
+  const [time, setTime] = useState(1)
 
   const handleRejct = () => {
     exitApp()
@@ -128,13 +128,13 @@ const styles = StyleSheet.create({
     maxHeight: '78%',
     backgroundColor: 'white',
     borderRadius: 4,
-    // shadowColor: '#000',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 4,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
     elevation: 3,
   },
   header: {

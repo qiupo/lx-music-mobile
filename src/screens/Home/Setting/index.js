@@ -2,7 +2,7 @@ import React from 'react'
 import {
   StyleSheet,
   View,
-  ScrollView,
+  ScrollView, TextInput,
 } from 'react-native'
 // import { AppColors } from '@/theme'
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 export default () => {
   return (
-    <ScrollView style={styles.scrollView} keyboardShouldPersistTaps={'always'}>
+    <ScrollView style={styles.scrollView} >
       <View style={styles.content}>
         <Basic />
         <Player />

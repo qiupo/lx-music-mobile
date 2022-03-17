@@ -169,9 +169,7 @@ const fetchData = (url, { timeout = 15000, ...options }) => {
         BackgroundTimer.clearTimeout(id)
         return response
       }).then(resp => resp.text().then(text => {
-        // console.log('--------------')
-        // console.log(text)
-        // console.log('--------------')
+
         return {
           headers: resp.headers.map,
           body: text,

@@ -15,19 +15,22 @@ const api_test = {
   //   return requestObj
   // },
   getMusicUrl(songInfo, type) {
-    const requestObj = httpFetch(`http://ts.tempmusic.tk/url/kw/${songInfo.songmid}/${type}`, {
+    console.log('请求歌曲')
+    // http://www.kuwo.cn/api/v1/www/music/playUrl?mid=${songInfo.songmid}&type=music&httpsStatus=1
+    console.log(`http://www.kuwo.cn/api/v1/www/music/playUrl?mid=${songInfo.songmid}&type=music&httpsStatus=1`)
+    const requestObj = httpFetch(`http://www.kuwo.cn/api/v1/www/music/playUrl?mid=${songInfo.songmid}&type=music&httpsStatus=1`, {
       method: 'get',
       timeout,
-      headers,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0',
+        Referer: 'http://kuwo.cn/',
+      },
       family: 4,
     })
     requestObj.promise = requestObj.promise.then(({ body }) => {
-      console.log('body-start')
-      console.log(headers)
-      console.log(body)
-      console.log('body-end')
-      return body.code === 0 ? Promise.resolve({ type, url: body.data }) : Promise.reject(new Error(requestMsg.fail))
+      return body.code === 200 ? Promise.resolve({ type, url: body.data }) : Promise.reject(new Error(requestMsg.fail))
     })
+
     return requestObj
   },
 }

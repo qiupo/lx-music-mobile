@@ -161,18 +161,20 @@ export const openOverlayPermissionActivity = () => {
 }
 
 export const onPositionChange = callback => {
-  try {
-    const eventEmitter = new NativeEventEmitter(LyricModule)
-
-    const eventListener = eventEmitter.addListener('set-position', event => {
-      callback(event)
-    })
-
-    return () => {
-      eventListener.remove()
-    }
-  } catch (e) {
-    console.log(e)
-  }
+  // try {
+  //   console.log('LyricModule')
+  //   console.log(LyricModule)
+  //   const eventEmitter = new NativeEventEmitter(LyricModule)
+  //
+  //   const eventListener = eventEmitter.addListener('set-position', event => {
+  //     callback(event)
+  //   })
+  //
+  //   return () => {
+  //     eventListener.remove()
+  //   }
+  // } catch (e) {
+  //   console.log(e)
+  // }
 }
 
