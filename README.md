@@ -56,3 +56,15 @@
 
 音乐平台不易，请尊重版权，支持正版。<br>
 若对此有疑问请 mail to: lyswhut+qq.com (请将`+`替换成`@`)
+
+### 如何构建
+1. yarn/npm/pnpm install
+2. rm -rf ./ios/Podfile.lock ./ios/Pods/
+3. npm install
+4. 调试
+cd ../
+npx react-native link
+npm run ios
+就会打开对应的模拟器
+
+如果出现问题，大概率是xcode的问题，针对相关的问题进行google修复。出现问题大概了就是重新pod install或者调整ios development的ios为9
