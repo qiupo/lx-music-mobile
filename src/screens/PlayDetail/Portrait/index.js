@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, memo, useState, useMemo, useRef } from 'react'
-import { View, StyleSheet } from 'react-native'
+import {View, StyleSheet ,SafeAreaView } from 'react-native'
 
 import Header from './components/Header'
 // import Aside from './components/Aside'
@@ -58,7 +58,9 @@ export default memo(({ componentId, animated }) => {
 
   return (
     <>
+      <SafeAreaView>
       <Header />
+      </SafeAreaView>
       <View style={{ flex: 1, flexDirection: 'column', height: '100%', backgroundColor: theme.primary }}>
         <PagerView
           onPageSelected={onPageSelected}

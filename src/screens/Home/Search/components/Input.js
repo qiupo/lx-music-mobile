@@ -71,7 +71,7 @@ export default forwardRef(({ onSetTipList, setPage }, ref) => {
       onChangeText={handleSearchInput}
       placeholder="Search for something..."
       value={text}
-      // onFocus={showTipList}
+      onFocus={showTipList}
       clearBtn
       ref={searchInputRef}
       onBlur={hideTipList}

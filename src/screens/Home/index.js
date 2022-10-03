@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { View, StatusBar, StyleSheet } from 'react-native'
+import {SafeAreaView, View, StatusBar, StyleSheet, TextInput } from 'react-native'
 import Header from './components/Header'
 import HeaderLandscape from './components/HeaderLandscape'
 // import Aside from './components/Aside'
@@ -45,7 +45,9 @@ export default (props) => {
   return (
     window.height > window.width
       ? <>
+        <SafeAreaView>
         <Header componentId={props.componentId} />
+        </SafeAreaView>
         <View style={{ flex: 1, flexDirection: 'column', height: '100%', backgroundColor: theme.primary }}>
           {/* <Aside /> */}
           <Main />

@@ -28,10 +28,12 @@ const handleExitApp = async() => {
 const updateMetaData = async isPlaying => {
   if (isPlaying == global.playInfo.isPlaying) {
     const duration = await TrackPlayer.getDuration()
-    // console.log('currentIsPlaying', global.playInfo.duration, duration)
+    console.log('currentIsPlaying', global.playInfo.duration, duration)
     if (global.playInfo.duration != duration) {
       global.playInfo.duration = duration
       const trackInfo = await getCurrentTrack()
+      console.log('trackInfo')
+      console.log(trackInfo)
       if (trackInfo && global.playInfo.currentPlayMusicInfo) {
         delayUpdateMusicInfo(buildTrack({ musicInfo: global.playInfo.currentPlayMusicInfo, type: trackInfo.type, url: trackInfo.url, duration }))
       }
@@ -151,7 +153,7 @@ export default async() => {
         break
       case TPState.Buffering:
         store.dispatch(playerAction.setStatus({ status: STATUS.buffering, text: '缓冲中...' }))
-        // console.log('state', 'State.BUFFERING')
+        console.log('state', 'State.BUFFERING')
         lrcPause()
         break
       case TPState.Connecting:
@@ -166,7 +168,7 @@ export default async() => {
             break
         }
         lrcPause()
-        // console.log('state', 'State.CONNECTING')
+        console.log('state', 'State.CONNECTING')
         break
 
       default:
@@ -175,11 +177,11 @@ export default async() => {
     }
     if (global.isPlayedExit) return handleExitApp()
 
-    // console.log('currentIsPlaying', currentIsPlaying, global.playInfo.isPlaying)
     await updateMetaData(currentIsPlaying)
   })
+  console.log('--------updateMetaData later------')
   TrackPlayer.addEventListener(TPEvent.PlaybackTrackChanged, async info => {
-    // console.log('nextTrack====>', info)
+    console.log('nextTrack====>', info)
     if (global.isPlayedExit) return handleExitApp()
 
     trackId = await getCurrentTrackId()

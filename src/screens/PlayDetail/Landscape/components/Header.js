@@ -1,15 +1,16 @@
-import React, { memo, useState, useCallback } from 'react'
+import React, {memo, useState, useCallback} from 'react'
 
-import { View, StyleSheet, StatusBar, TouchableOpacity, Text } from 'react-native'
+import {View, StyleSheet, StatusBar, TouchableOpacity, Text, SafeAreaView } from 'react-native'
 
 import Icon from '@/components/common/Icon'
-import { useGetter, useDispatch } from '@/store'
-import { pop } from '@/navigation'
+import {useGetter, useDispatch} from '@/store'
+import {pop} from '@/navigation'
 import Popup from '@/components/common/Popup'
 import Slider from '@/components/common/Slider'
-import { useTranslation } from '@/plugins/i18n'
+import {useTranslation} from '@/plugins/i18n'
 // import { AppColors } from '@/theme'
 import CommentBtn from './CommentBtn'
+
 
 const LrcFontSizeStyles = StyleSheet.create({
   content: {
@@ -38,13 +39,13 @@ const LrcFontSize = () => {
   }, [])
   const handleSlidingComplete = useCallback(value => {
     if (playerLandscapeStyle.lrcFontSize == value) return
-    setPlayerLandscapeStyle({ ...playerLandscapeStyle, lrcFontSize: value })
+    setPlayerLandscapeStyle({...playerLandscapeStyle, lrcFontSize: value})
     setSliding(false)
   }, [playerLandscapeStyle, setPlayerLandscapeStyle])
 
   return (
     <View style={LrcFontSizeStyles.content}>
-      <Text style={{ color: theme.secondary10 }}>{isSliding ? sliderSize : playerLandscapeStyle.lrcFontSize}</Text>
+      <Text style={{color: theme.secondary10}}>{isSliding ? sliderSize : playerLandscapeStyle.lrcFontSize}</Text>
       <Slider
         minimumValue={120}
         maximumValue={380}
@@ -58,8 +59,8 @@ const LrcFontSize = () => {
   )
 }
 
-const Setting = ({ visible, hide }) => {
-  const { t } = useTranslation()
+const Setting = ({visible, hide}) => {
+  const {t} = useTranslation()
   return (
     <Popup
       visible={visible}
@@ -67,7 +68,7 @@ const Setting = ({ visible, hide }) => {
       position='left'
       title={t('player_setting_lrc_font_size')}
     >
-      <LrcFontSize />
+      <LrcFontSize/>
     </Popup>
   )
 }
@@ -87,22 +88,29 @@ export default memo(() => {
   }
 
   return (
-    <View style={{ ...styles.header, backgroundColor: theme.primary }} nativeID="header">
-      <View style={{ ...styles.container }}>
-        <TouchableOpacity onPress={back} style={styles.button}>
-          <Icon name="chevron-left" style={{ color: theme.normal }} size={24} />
-        </TouchableOpacity>
-        <View style={styles.titleContent}>
-          <Text numberOfLines={1} style={{ ...styles.title, color: theme.normal10 }}>{playMusicInfo.musicInfo?.name}</Text>
-          <Text numberOfLines={1} style={{ ...styles.title, color: theme.normal20, fontSize: 12 }}>{playMusicInfo.musicInfo?.singer}</Text>
+    <SafeAreaView>
+      <View style={{...styles.header, backgroundColor: theme.primary}} nativeID="header">
+        <View style={{...styles.container}}>
+          <TouchableOpacity onPress={back} style={styles.button}>
+            <Icon name="chevron-left" style={{color: theme.normal}} size={24}/>
+          </TouchableOpacity>
+          <View style={styles.titleContent}>
+            <Text numberOfLines={1}
+                  style={{...styles.title, color: theme.normal10}}>{playMusicInfo.musicInfo?.name}</Text>
+            <Text numberOfLines={1} style={{
+              ...styles.title,
+              color: theme.normal20,
+              fontSize: 12
+            }}>{playMusicInfo.musicInfo?.singer}</Text>
+          </View>
+          <CommentBtn/>
+          <TouchableOpacity onPress={showSetting} style={styles.button}>
+            <Icon name="font-size" style={{color: theme.normal30}} size={24}/>
+          </TouchableOpacity>
         </View>
-        <CommentBtn />
-        <TouchableOpacity onPress={showSetting} style={styles.button}>
-          <Icon name="font-size" style={{ color: theme.normal30 }} size={24} />
-        </TouchableOpacity>
+        <Setting visible={settingVisible} hide={() => setSettingVisible(false)}/>
       </View>
-      <Setting visible={settingVisible} hide={() => setSettingVisible(false)} />
-    </View>
+    </SafeAreaView>
   )
 })
 

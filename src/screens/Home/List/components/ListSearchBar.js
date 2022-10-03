@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo, memo } from 'react'
-import { Text, StyleSheet, Animated, View, TouchableOpacity } from 'react-native'
+import {Text, StyleSheet, Animated, View, TouchableOpacity, TextInput} from 'react-native'
 import { useTranslation } from '@/plugins/i18n'
 
 import Input from '@/components/common/Input'
